@@ -118,3 +118,36 @@ let items = document.getElementById('list-of-posts')
   })
 
 //Code for address-form-launchbook goes here
+let addressForm = document.mailingAddressForm
+
+let firstName = document.getElementById("first-name")
+let lastName = document.getElementById("last-name")
+let address = document.getElementById("address")
+let city = document.getElementById("city")
+let state = document.getElementById("state")
+let zipCode = document.getElementById("zip-code")
+let phoneNum = document.getElementById("phone-number")
+let email = document.getElementById("email")
+
+let isValid = (field) => {
+  let paragraph = document.createElement('p')
+  let fieldName = field.name.replace(/([A-Z]+)/g, " $1")
+  let text = document.createTextNode(`- ${fieldName.toLowerCase()} cannot be blank`)
+  if (!field.value) {
+    paragraph.appendChild(text)
+    paragraph.classList.add("error")
+    addressForm.appendChild(paragraph)
+  }
+}
+
+addressForm.addEventListener("submit", (event) => {
+  event.preventDefault()
+  isValid(firstName)
+  isValid(lastName)
+  isValid(address)
+  isValid(city)
+  isValid(state)
+  isValid(zipCode)
+  isValid(phoneNum)
+  isValid(email)
+})
